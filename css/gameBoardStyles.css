@@ -1,0 +1,120 @@
+/* Start Game Board Styles */
+
+#game-board {
+    padding-inline: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+}
+
+.card {
+    width: 100px;
+    height: 130px;
+    border: 1px solid black;
+    transform-style: preserve-3d;
+}
+
+.face {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    opacity: inherit;
+    visibility: inherit;
+}
+
+.back {
+    background-color: red;
+    transform: translateZ(2px);
+}
+
+.front {
+    background-color: rgb(200, 200, 255);
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & img {
+        object-fit: contain;
+        height: 100%;
+        width: 80%;
+    }
+}
+
+.not-flipped {
+    transform: rotate3d(0);
+}
+
+.flipped {
+    transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.flipping-open {
+    animation-name: flip-open;
+    animation-duration: 0.8s;
+}
+
+.flipping-close {
+    animation-name: flip-close;
+    animation-duration: 0.5s;
+}
+
+.found {
+    animation-name: vanish;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    pointer-events: none;
+}
+
+@keyframes flip-open {
+    from {
+        transform: rotate3d(0);
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.1;
+    }
+
+    to {
+        scale: 1;
+        transform: rotate3d(0, 1, 0, 180deg);
+    }
+}
+
+@keyframes flip-close {
+    from {
+        transform: rotate3d(0, 1, 0, 180deg);
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.1;
+    }
+
+    to {
+        scale: 1;
+        transform: rotate3d(0);
+    }
+}
+
+@keyframes vanish {
+    from {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+/* End Game Board Styles */

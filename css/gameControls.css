@@ -1,0 +1,26 @@
+/* Start Game Controls Styles */
+
+#game-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-controls>div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+input[type=number] {
+    appearance: auto;
+    -moz-appearance: textfield;
+}
+
+/* End Game Controls Styles */

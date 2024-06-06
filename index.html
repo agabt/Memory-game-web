@@ -5,12 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game - Juego de Memoria | Practica Final Lenguaje de Marcas</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/gameControls.css">
+    <link rel="stylesheet" href="css/gameBoardStyles.css">
+    <script src="js/globalVariablesDeclaration.js" defer></script>
+    <script src="js/cardCreation.js" defer></script>
+    <script src="js/gameController.js" defer></script>
 </head>
 
 <body>
+    <div id="game-display">
+        <div id="game-controls">
+            <div>
+                <button id="start-game">Iniciar Juego</button>
+                <button id="reset-game">Reiniciar Juego</button>
+                <dialog>
+                    <p id="dialog-title"></p>
+                    <p id="dialog-info"></p>
+                </dialog>
+            </div>
 
+            <div>
+                <input type="number" id="height">
+                <span>x</span>
+                <input type="number" id="width">
+            </div>
+        </div>
+        <div id="game-info"></div>
+        <div id="game-board"></div>
+    </div>
 </body>
 
 </html>
