@@ -1,0 +1,42 @@
+#game-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.score-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#timer {
+    font-size: 1.5em;
+    font-weight: 500;
+    box-sizing: content-box;
+}
+
+@media screen and (max-width: 900px) {
+    .score-container {
+        flex-direction: column;
+        gap: 5px;
+
+        & p {
+            margin: 0;
+        }
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .score-container p {
+        font-size: 0.8em;
+    }
+}

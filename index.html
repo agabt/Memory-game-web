@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game - Juego de Memoria | Practica Final Lenguaje de Marcas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/gameControls.css">
     <link rel="stylesheet" href="css/gameBoardStyles.css">
+    <link rel="stylesheet" href="css/gameInfoStyles.css">
     <script src="js/globalVariablesDeclaration.js" defer></script>
     <script src="js/cardCreation.js" defer></script>
     <script src="js/gameController.js" defer></script>
@@ -16,23 +18,69 @@
 <body>
     <div id="game-display">
         <div id="game-controls">
-            <div>
-                <button id="start-game">Iniciar Juego</button>
-                <button id="reset-game">Reiniciar Juego</button>
+            <div class="div-action-buttons">
+                <button class="action-button" id="start-game" title="Inicia el juego con la configuración actual"><i
+                        class="bi bi-play-fill"></i></button>
+                <button class="action-button" id="reset-game" title="Reinicia el juego con la configuración anterior"><i
+                        class="bi bi-arrow-clockwise"></i></button>
+                <button class="action-button" id="end-game" title="Acaba el juego y puedes volver a configurar todo"><i
+                        class="bi bi-box-arrow-right"></i></button>
                 <dialog>
                     <p id="dialog-title"></p>
                     <p id="dialog-info"></p>
                 </dialog>
             </div>
 
-            <div>
-                <input type="number" id="height">
-                <span>x</span>
-                <input type="number" id="width">
+            <div class="options">
+                <div id="input-info">
+                    <p>
+                        <label for="height">Altura</label>
+                    </p>
+
+                    <p>
+                        <label for="width">Anchura</label>
+                    </p>
+                </div>
+
+                <div>
+                    <input type="number" id="height" max="8">
+                    <span>x</span>
+                    <input type="number" id="width" max="8">
+                </div>
+
+                <div class="div-ai-difficulty">
+                    <label for="ai-difficulty">Dificultad de la IA:</label>
+                    <div class="div-range">
+                        <span class="easy">0</span>
+                        <input type="range" name="ai-difficulty-range" id="ai-difficulty-range" min="0" max="100">
+                        <span class="hard">100</span>
+                    </div>
+                    <input type="number" id="ai-difficulty" min="0" max="100" value="50">
+                </div>
             </div>
         </div>
-        <div id="game-info"></div>
-        <div id="game-board"></div>
+
+        <div id="game-info">
+            <div class="score-container">
+                <p>Puntuación del jugador: <span id="player-score">0</span></p>
+                <p class="separator">|</p>
+                <p>Juegos ganados: <span id="player-won-games">0</span></p>
+            </div>
+            <div>
+                <p id="timer">0:00</p>
+            </div>
+            <div class="score-container">
+                <p>Puntuación de la IA: <span id="ai-score">0</span> </p>
+                <p class="separator">|</p>
+                <p>Juegos ganados: <span id="ai-won-games">0</span></p>
+            </div>
+        </div>
+
+        <div id="game-board-container">
+            <div id="game-board"></div>
+            <div id="log"></div>
+        </div>
+
     </div>
 </body>
 

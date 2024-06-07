@@ -52,11 +52,22 @@ function flipCardsClose() {
 }
 
 function checkIfPair() {
+    console.log(openObjectCards);
     const [cardObject1, cardObject2] = openObjectCards;
     clearTimeout(changeTurnTimeOut);
     changeTurnTimeOut = null;
 
     if (cardObject1.index === cardObject2.index) {
+        if (whoseTurn === "player") {
+            addLog("El jugador humano ha encontrado un par.", "lightblue");
+            playerScore++;
+        } else {
+            addLog("La IA ha encontrado un par.", "coral");
+            aiScore++;
+        }
+
+        updateScore();
+
         foundPairs++;
         clearTimeout(closeCardsTimeOut);
         closeCardsTimeOut = null;
@@ -72,8 +83,9 @@ function checkIfPair() {
 
         checkWinTimeOut = setTimeout(() => {
             if (foundPairs == cardIndex + 1) {
-                openDialog("¡Has ganado!", "Has encontrado todas las cartas.");
+                showEnding();
             }
+
         }, 1750);
 
         return;
@@ -84,13 +96,44 @@ function checkIfPair() {
     }, 2000);
 }
 
+function showEnding() {
+    if (playerScore > aiScore) {
+        openDialog("¡Has ganado!", "Has encontrado todas las cartas.");
+        addLog("El jugador humano ha ganado.", "green");
+        playerWonGames++;
+        localStorage.setItem("playerWonGames", playerWonGames);
+
+    } else if (playerScore < aiScore) {
+        openDialog("¡Has perdido!", "La IA ha encontrado más cartas que tú.");
+        addLog("La IA ha ganado.", "red");
+        aiWonGames++;
+        localStorage.setItem("aiWonGames", aiWonGames);
+    } else {
+        openDialog("¡Empate!", "Has encontrado la misma cantidad de cartas que la IA.");
+        addLog("Empate.");
+    }
+
+    endGame();
+}
+
+function addLog(message, color = "black") {
+    const $logItem = document.createElement("p");
+    $logItem.innerHTML = `Partida ${playedGames} - ${formatTime()} - ${message}`;
+    $logItem.style.color = color;
+    $log.appendChild($logItem);
+}
+
 function vanishAndDeleteCards(cardObject1, cardObject2) {
     cardObject1.cardElement.classList.add("found");
     cardObject2.cardElement.classList.add("found");
 
     removeCardFromAllObjectCards(cardObject1, cardObject2);
     removeCardFromAiKnownCards(cardObject1, cardObject2);
-    openObjectCards = [];
+}
+
+function updateScore() {
+    $aiScore.innerHTML = aiScore;
+    $playerScore.innerHTML = playerScore;
 }
 
 function removeCardFromAllObjectCards(...cards) {
@@ -133,6 +176,10 @@ function aiTurn() {
 function aiFlipRandomCard() {
     const randomCard = Math.floor(Math.random() * allObjectCards.length);
     const cardObject = allObjectCards[randomCard];
+    if (openObjectCards.includes(cardObject)) {
+        aiFlipRandomCard();
+        return;
+    }
 
     flipCard(cardObject);
 
@@ -140,7 +187,7 @@ function aiFlipRandomCard() {
         return;
     }
 
-    setTimeout(() => {
+    aiTurnTimeOut = setTimeout(() => {
         aiTurn();
     }, 1000);
 }
@@ -169,7 +216,6 @@ function handlePairs() {
 
     if (checkedPairs.length > 0) {
         checkedPairs.forEach((cardToFlip, index) => {
-            // const TIME_OUT = index % 2 === 0 ? 1500 * index : 500 * index;
             const TIME_OUT = 500 * index;
 
             setTimeout(() => {
@@ -179,7 +225,47 @@ function handlePairs() {
 
     }
 
-    setTimeout(() => {
+    aiFlipRandomCardTimeOut = setTimeout(() => {
         aiFlipRandomCard();
     }, checkedPairs.length * 500 + 1000);
 }
+
+$endGame.addEventListener("click", () => {
+    endGame();
+});
+
+function endGame() {
+    $aiDifficulty.classList.remove("untoachable");
+    $aiDifficultyRange.classList.remove("untoachable");
+
+    displayWonGames();
+
+    clearInterval(timeInterval);
+    timeInterval = null;
+
+    $gameBoard.classList.remove("ai-turn");
+    $gameBoard.classList.add("untoachable");
+
+    clearInterval(aiFlipRandomCardTimeOut);
+    clearInterval(aiTurnTimeOut);
+    clearInterval(changeTurnTimeOut);
+    clearInterval(checkWinTimeOut);
+    clearInterval(closeCardsTimeOut);
+    clearInterval(flipCardsTimeOut);
+    clearInterval(flipCardsCloseTimeOut);
+
+    aiFlipRandomCardTimeOut = null;
+    aiTurnTimeOut = null;
+    changeTurnTimeOut = null;
+    checkWinTimeOut = null;
+    closeCardsTimeOut = null;
+    flipCardsTimeOut = null;
+    flipCardsCloseTimeOut = null;
+}
+
+function displayWonGames() {
+    $playerWonGames.innerHTML = playerWonGames;
+    $aiWonGames.innerHTML = aiWonGames;
+}
+
+displayWonGames();
