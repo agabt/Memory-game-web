@@ -18,6 +18,9 @@ const $log = document.querySelector("#log");
 const $timer = document.querySelector("#timer");
 const $playerWonGames = document.querySelector("#player-won-games");
 const $aiWonGames = document.querySelector("#ai-won-games");
+const $aiDifficultyCheckbox = document.querySelector("#ai-difficulty-checkbox");
+const $aiOptions = document.querySelector("#ai-options");
+const $deleteLocalStorage = document.querySelector("#delete-local-storage");
 
 // Arrays
 let openObjectCards = [];
@@ -59,6 +62,7 @@ let aiScore = 0;
 let playedGames = 0;
 let playerWonGames = localStorage.getItem("playerWonGames") || 0;
 let aiWonGames = localStorage.getItem("aiWonGames") || 0;
+let aiActivated = true;
 
 // Reset variables
 function resetVariables() {

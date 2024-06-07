@@ -9,12 +9,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+    align-items: start;
+    margin: 20px 0;
 }
 
 #log {
     width: 30%;
+    height: 70vh;
     overflow: scroll;
 }
 
@@ -169,6 +170,7 @@
 
     #log {
         width: 85%;
+        height: 30vh;
     }
 
     #game-board {

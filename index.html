@@ -27,6 +27,10 @@
                         class="bi bi-arrow-clockwise"></i></button>
                 <button class="action-button" id="end-game" title="Acaba el juego y puedes volver a configurar todo"><i
                         class="bi bi-box-arrow-right"></i></button>
+                <button class="action-button" id="delete-local-storage"
+                    title="Reseta / elimina tu puntuación actual y la de la IA">
+                    <i class="bi bi-trash"></i>
+                </button>
                 <dialog>
                     <p id="dialog-title"></p>
                     <p id="dialog-info"></p>
@@ -51,13 +55,19 @@
                 </div>
 
                 <div class="div-ai-difficulty">
-                    <label for="ai-difficulty">Dificultad de la IA:</label>
-                    <div class="div-range">
-                        <span class="easy">0</span>
-                        <input type="range" name="ai-difficulty-range" id="ai-difficulty-range" min="0" max="100">
-                        <span class="hard">100</span>
+                    <div>
+                        <label for="ai-difficulty-checkbox">Activar IA:</label>
+                        <input type="checkbox" id="ai-difficulty-checkbox" checked>
                     </div>
-                    <input type="number" id="ai-difficulty" min="0" max="100" value="50">
+                    <div class="div-ai-difficulty" id="ai-options">
+                        <label for="ai-difficulty">Dificultad de la IA:</label>
+                        <div class="div-range">
+                            <span class="easy">0</span>
+                            <input type="range" name="ai-difficulty-range" id="ai-difficulty-range" min="0" max="100">
+                            <span class="hard">100</span>
+                        </div>
+                        <input type="number" id="ai-difficulty" min="0" max="100" value="50">
+                    </div>
                 </div>
             </div>
         </div>

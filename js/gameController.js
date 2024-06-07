@@ -91,9 +91,11 @@ function checkIfPair() {
         return;
     }
 
-    changeTurnTimeOut = setTimeout(() => {
-        changeTurn();
-    }, 2000);
+    if (aiActivated) {
+        changeTurnTimeOut = setTimeout(() => {
+            changeTurn();
+        }, 2000);
+    }
 }
 
 function showEnding() {

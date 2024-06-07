@@ -10,6 +10,19 @@ $aiDifficulty.addEventListener("input", () => {
     setBackGroundColorAiDifficulty();
 });
 
+$aiDifficultyCheckbox.addEventListener("change", () => {
+    aiActivated = !aiActivated;
+    $aiOptions.classList.toggle("untoachable");
+});
+
+$deleteLocalStorage.addEventListener("click", () => {
+    localStorage.removeItem("playerWonGames");
+    localStorage.removeItem("aiWonGames");
+    playerWonGames = 0;
+    aiWonGames = 0;
+    displayWonGames();
+});
+
 function setBackGroundColorAiDifficulty() {
     $aiDifficulty.style.backgroundColor = `rgba(${$aiDifficulty.value * 2.55}, 0, ${255 - $aiDifficulty.value * 2.55}, 0.4)`;
 }
