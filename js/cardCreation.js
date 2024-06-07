@@ -36,6 +36,7 @@ function createGameBoard() {
     }
 
     displayCards();
+    startPlaying();
 }
 
 function buildCard() {
@@ -52,6 +53,7 @@ function buildCard() {
     $cardFrontImg.src = `../assets/img/${cardFrontImages[cardIndex]}.webp`;
 
     const cardObject = {
+        arrayIndex: allObjectCards.length,
         index: cardIndex,
         cardElement: $card
     }
@@ -103,6 +105,12 @@ function closeDialog() {
     $dialog.close();
 }
 
+function startPlaying() {
+    if (whoseTurn === "ai") {
+        $gameBoard.classList.add("ai-turn");
+        aiTurn();
+    }
+}
 
 // Testing zone
 /* for (let i = 0; i < 8; i++) {

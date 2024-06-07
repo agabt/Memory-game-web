@@ -13,11 +13,13 @@ const $dialogInfo = document.querySelector("#dialog-info");
 // Arrays
 let openObjectCards = [];
 let allObjectCards = [];
+let aiKnownCards = new Set();
 let cardFrontImages = ["cloud", "fire-flower", "mushroom", "superstar"];
 
 // Time Outs
 let closeCardsTimeOut = null;
 let checkWinTimeOut = null;
+let changeTurnTimeOut = null;
 
 // Game parameters
 let gameHeight = 0;
@@ -26,6 +28,9 @@ let gameWidth = 0;
 let flippedCards = 0;
 let foundPairs = 0;
 let cardIndex = -1;
+
+let whoseTurn = "player";
+let aiDifficulty = 100;
 
 // Reset variables
 function resetVariables() {
@@ -37,4 +42,7 @@ function resetVariables() {
     foundPairs = 0;
     openObjectCards = [];
     allObjectCards = [];
+    aiKnownCards = new Set();
+    $gameBoard.classList.remove("ai-turn");
+    whoseTurn = "player";
 }
