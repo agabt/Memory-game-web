@@ -21,6 +21,7 @@ const $aiWonGames = document.querySelector("#ai-won-games");
 const $aiDifficultyCheckbox = document.querySelector("#ai-difficulty-checkbox");
 const $aiOptions = document.querySelector("#ai-options");
 const $deleteLocalStorage = document.querySelector("#delete-local-storage");
+const $closeDialog = document.querySelector("#close-dialog");
 
 // Arrays
 let openObjectCards = [];

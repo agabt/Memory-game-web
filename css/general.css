@@ -6,6 +6,29 @@ body {
         Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+dialog div {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+
+    & button {
+        background-color: red;
+        border: none;
+        border-radius: 100%;
+
+        & i {
+            color: white;
+            font-size: 2rem;
+        }
+    }
+}
+
+dialog div button :hover {
+    cursor: pointer;
+}
+
 dialog {
     cursor: default;
     border: none;
@@ -48,4 +71,19 @@ dialog::backdrop {
     100% {
         background-color: rgba(0, 0, 0, 0.1);
     }
+}
+
+@media screen and (max-width: 768px) {
+    dialog div button i {
+        font-size: 1.5rem;
+    }
+
+    #dialog-title {
+        font-size: large;
+    }
+
+    #dialog-info {
+        font-size: medium;
+    }
+
 }

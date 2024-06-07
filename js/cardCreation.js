@@ -148,7 +148,7 @@ function openDialog(title, message) {
     $dialog.style.display = "flex";
     $dialog.showModal();
 
-    $dialog.onclick = closeDialog;
+    $closeDialog.onclick = closeDialog;
 }
 
 function closeDialog() {
